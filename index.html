@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>My Map</title> 
+
+	<!-- Link to JQuery library (used for modal) -->	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<!-- Link to Mapbox GL JS library -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+    <!-- Link to Mapbox GL JS css stylesheet -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet'/>
+
+    <link rel="stylesheet" href="map.css">
+</head>
+
+<body>
+
+    <h1>Waste Management of New Delhi Supplementary Drain Area</h1>
+	
+	<!-- Map  -->
+    <div id="map"></div>
+
+    <!-- Map legend (content populated by our javascript) -->	
+	<div class='map-overlay' id='legend'>
+		<h2>Population Density (per square kilometer)</h2>
+	</div>	
+	    
+
+    <!-- "About this map" modal (hidden by default) -->	
+	<div class='modal'>
+		<h2 class='modal-title'>About this project</h2>
+		<div class='modal-body'><p>This is a Waste Management Map of New Delhi Supplementary Drain Area created in the Scripting Civic Engagement seminar at the University of Virginia (Fall 2017), taught by Andrea Hansen Phillips.</p><p>Map data courtesy of <a href='https://www.mapbox.com/studio/'>Mapbox Studio</a> and Yamuna River Project Studio</a></p><p>For questions or to improve this map, contact <a href='mailto:zs9bc@virginia.edu'>Zhilan SONG</a></p></div>
+		<p>Bhalswa Landfill:</p>
+		<img src="http://i.dailymail.co.uk/i/pix/2016/04/18/23/334F54DF00000578-3546535-image-m-3_1461016909368.jpg" alt="Landfill" width="1000">
+		<button class='close-button'>&times;</button>  	<!-- A special "x" character (the multiply sign) used in close buttons -->	
+	</div>
+	<div id='screen'></div>
+
+    <!-- Button to hide or show "About this map" modal -->	
+	<button type='button' class='button-default' id="about">About this map</button> <!-- Button to hide or show modal -->
+</body>
+
+<script src="map.js"></script>
+</html>
