@@ -1,43 +1,116 @@
 <html>
 <head>
-    <title>My Map</title> 
+  <!-- Link to JQuery library (used for modal) -->  
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <!-- Link to Mapbox GL JS library -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+    <!-- Link to Mapbox GL JS css styleshcss/indiaeet -->
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet'/>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
-	<!-- Link to JQuery library (used for modal) -->	
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<!-- Link to Mapbox GL JS library -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
-    <!-- Link to Mapbox GL JS css stylesheet -->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./index.js"></script>
+  
 
-    <link rel="stylesheet" href="map.css">
+
 </head>
 
-<body>
-
-    <h1>Waste Management of New Delhi Supplementary Drain Area</h1>
-	
-	<!-- Map  -->
+<body>  
+  <!-- Map  -->
     <div id="map"></div>
-
-    <!-- Map legend (content populated by our javascript) -->	
-	<div class='map-overlay' id='legend'>
-		<h2>Population Density (per square kilometer)</h2>
-	</div>	
-	    
-
-    <!-- "About this map" modal (hidden by default) -->	
-	<div class='modal'>
-		<h2 class='modal-title'>About this project</h2>
-		<div class='modal-body'><p>This is a Waste Management Map of New Delhi Supplementary Drain Area created in the Scripting Civic Engagement seminar at the University of Virginia (Fall 2017), taught by Andrea Hansen Phillips.</p><p>Map data courtesy of <a href='https://www.mapbox.com/studio/'>Mapbox Studio</a> and Yamuna River Project Studio</a></p><p>For questions or to improve this map, contact <a href='mailto:zs9bc@virginia.edu'>Zhilan SONG</a></p></div>
-		<p>Bhalswa Landfill:</p>
-		<img src="http://i.dailymail.co.uk/i/pix/2016/04/18/23/334F54DF00000578-3546535-image-m-3_1461016909368.jpg" alt="Landfill" width="1000">
-		<button class='close-button'>&times;</button>  	<!-- A special "x" character (the multiply sign) used in close buttons -->	
-	</div>
-	<div id='screen'></div>
-
-    <!-- Button to hide or show "About this map" modal -->	
-	<button type='button' class='button-default' id="about">About this map</button> <!-- Button to hide or show modal -->
+    <form>
+        <input type="range" id="slider" list="tickmarks" min="1993" max="2017" >
+        <datalist id="tickmarks">
+          <option value="1993" label="1993"></option>
+          <option value="2014" label="2014"></option>
+          <option value="2017" label="2017"></option>
+        </datalist>
+    </form>
 </body>
 
-<script src="map.js"></script>
+  <script>
+  $.get('landfill01.svg', function(data) {
+    $(document.body).append(data.documentElement);
+    init();
+  });
+  
+
+  function init() {
+  /* Add JavaScript here */
+
+  // $('#section').hoverIntent(function( { 
+  //   $('#dimension').show(); 
+  // }), function( { 
+  //   $('#dimension').hide(); 
+  // }));
+
+  $("#cover").click(function() {
+  $( "#cover" ).hide("slow");
+  });
+
+
+  $('#section').mouseenter(function() {
+    $('#dimension').show();
+  });
+  $('#section').mouseleave(function() {
+    $('#dimension').hide();
+  });
+  
+  $('#pollution1').mouseenter(function() {
+    $('#airpollution').show();
+  });
+  $('#pollution1').mouseleave(function() {
+    $('#airpollution').hide();
+  });
+
+  $('#pollution2').mouseenter(function() {
+  $('#groundwater').show();
+  });
+  $('#pollution2').mouseleave(function() {
+  $('#groundwater').hide();
+  });
+  
+  /* mouse BT layer, show image */
+  $('#BTlandfill').mouseenter(function() {
+  $('#imageLandfill').show();
+  });
+  $('#BTlandfill').mouseleave(function() {
+  $('#imageLandfill').hide();
+  });
+  $('#BTslum').mouseenter(function() {
+  $('#imageSlum').show();
+  });
+  $('#BTslum').mouseleave(function() {
+  $('#imageSlum').hide();
+  });
+  $('#BTdrain').mouseenter(function() {
+  $('#imageDrain').show();
+  });
+  $('#BTdrain').mouseleave(function() {
+  $('#imageDrain').hide();
+  });
+  $('#BTsortingground').mouseenter(function() {
+  $('#imageSortingground').show();
+  });
+  $('#BTsortingground').mouseleave(function() {
+  $('#imageSortingground').hide();
+  });
+
+  }
+
+  // range timeline slider
+  $("#slider").on('input', function(e) {
+
+    var value = e.target.value;
+    console.log(value);
+
+    if (value = "1993") {$('#1993').show();
+      //do something to landfill height
+    } else if (value = "2014") {$('#2014').show();
+
+    }
+
+  });
+  </script>
 </html>
+
